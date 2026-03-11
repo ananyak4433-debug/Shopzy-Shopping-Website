@@ -8,16 +8,39 @@
 # testing
 /coverage
 
-# production
+# production build
 /build
+/dist
 
-# misc
-.DS_Store
+# environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+
+# runtime files
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE / editor folders
+.vscode/
+.idea/
+
+# temporary files
+*.tmp
+*.temp
+.cache/
+
+# optional (ignore lock file if you want, but usually keep it)
+# package-lock.json
+# yarn.lock
