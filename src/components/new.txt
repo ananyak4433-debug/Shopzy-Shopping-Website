@@ -1,0 +1,54 @@
+useMemo is a performance optimization hook.
+It remembers the result of a calculation so React doesn’t redo it on every render.
+
+In React, every state change causes a re-render.
+If you have a heavy calculation, it will run again even if the inputs didn’t change.
+👉 useMemo prevents that.
+
+const memoizedValue = useMemo(() => {
+  return expensiveCalculation();
+}, [dependencies]);
+
+
+When useMemo Actually Matters
+Use it when:
+- Large Array Filtration
+- Heavy computation (e.g., sorting large arrays)
+- Complex calculations
+- Data transformation
+
+let doubleValue = expensiveTask(input);
+That means:
+- Every time the component re-renders → expensiveTask runs again
+- Re-render happens when:
+- you change count ✅
+- you change input ✅
+- So even when you only click Increment, the slow loop runs again — which is wasteful and makes UI lag.
+
+
+let doubleValue = useMemo(() => expensiveTask(input), [input]);
+Now behavior changes:
+- expensiveTask runs only when input changes
+- clicking Increment will NOT run the slow loop
+- React will reuse the cached result
+
+
+In simple words :
+- Without useMemo
+     “Run the heavy calculation every render”
+- With useMemo
+      “Run the heavy calculation only when needed”
+
+[input]
+This is the dependency array.
+It tells React:
+Recalculate only if input changes
+
+
+console.log("Inside Expensive Task");
+Try this:
+1️⃣ Type a number → log appears
+2️⃣ Click Increment →
+        without useMemo → log appears again ❌
+        with useMemo → no log ✅
+That proves memoization is working.
